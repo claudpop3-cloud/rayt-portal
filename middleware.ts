@@ -9,15 +9,18 @@ import type { NextRequest } from "next/server";
  * Публичные роуты (квиз, лендинги, /api/lead для форм) не затрагиваются.
  */
 export function middleware(req: NextRequest) {
-  const expectedUser = process.env.ADMIN_USER || "admin";
-  const expectedPass = process.env.ADMIN_PASSWORD || "admin";
+  const expectedUser = (process.env.ADMIN_USER || "admin").trim();
+  const expectedPass = (process.env.ADMIN_PASSWORD || "admin").trim();
 
   const header = req.headers.get("authorization");
   if (header?.startsWith("Basic ")) {
     try {
-      const decoded = atob(header.slice(6));
+      // Корректно декодируем UTF-8 (иначе кириллица в логине/пароле не совпадёт:
+      // atob даёт Latin-1-строку). Браузер шлёт креды в UTF-8 (charset ниже).
+      const bytes = Uint8Array.from(atob(header.slice(6)), (c) => c.charCodeAt(0));
+      const decoded = new TextDecoder().decode(bytes);
       const sep = decoded.indexOf(":");
-      const user = decoded.slice(0, sep);
+      const user = decoded.slice(0, sep).trim();
       const pass = decoded.slice(sep + 1);
       if (user === expectedUser && pass === expectedPass) {
         return NextResponse.next();
