@@ -27,6 +27,15 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // Фоновый prefetch защищённой ссылки (напр. пункта «Админка» в меню) не должен
+  // вызывать окно Basic-Auth на публичных страницах — отвечаем 401 без
+  // WWW-Authenticate, тогда браузер не показывает диалог входа.
+  const purpose =
+    req.headers.get("sec-purpose") || req.headers.get("purpose") || "";
+  if (req.headers.get("next-router-prefetch") === "1" || purpose.includes("prefetch")) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   return new NextResponse("Требуется авторизация", {
     status: 401,
     headers: { "WWW-Authenticate": 'Basic realm="Admin", charset="UTF-8"' },

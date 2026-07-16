@@ -20,6 +20,9 @@ interface NavItem {
   href: string;
   icon: React.ReactNode;
   external?: boolean;
+  /** Обычная ссылка <a> без Next-prefetch (для защищённых роутов, напр. /admin —
+   *  иначе фоновый prefetch ловит 401 и браузер показывает окно входа на всех страницах). */
+  plain?: boolean;
 }
 
 const NAV: NavItem[] = [
@@ -27,7 +30,7 @@ const NAV: NavItem[] = [
   { label: "ИИ-разбор", href: routes.quiz, icon: <ClipboardCheck size={19} /> },
   { label: "Сопровождение", href: routes.sopSeller, icon: <Handshake size={19} /> },
   { label: "Курсы", href: routes.courses, icon: <GraduationCap size={19} /> },
-  { label: "Админка", href: routes.admin, icon: <Settings size={19} /> },
+  { label: "Админка", href: routes.admin, icon: <Settings size={19} />, plain: true },
 ];
 
 export default function SiteSidebar() {
@@ -77,6 +80,16 @@ export default function SiteSidebar() {
                 target="_blank"
                 rel="noopener"
                 className={styles.item}
+                onClick={close}
+              >
+                <span className={styles.itemIcon}>{item.icon}</span>
+                {item.label}
+              </a>
+            ) : item.plain ? (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`${styles.item} ${isActive(item.href) ? styles.itemActive : ""}`}
                 onClick={close}
               >
                 <span className={styles.itemIcon}>{item.icon}</span>
