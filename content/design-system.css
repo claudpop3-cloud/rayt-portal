@@ -1,0 +1,56 @@
+/* ============================================================
+   ДИЗАЙН-СИСТЕМА RAYT / MAKEUNION  (исходник-референс)
+   Извлечена из эталона my.makeunion.me/simulators/ozon-quiz.
+   Внедрена в app/globals.css (токены --rr-* и классы .rr-*).
+   Здесь хранится как эталонный источник — не подключается напрямую.
+   ============================================================ */
+
+:root {
+  /* Фоны */
+  --rr-bg: #000001;
+  --rr-bg-deep: #0a0a13;
+  --rr-bg-card: #141629;
+  --rr-bg-raised: #1d1d32;
+  --rr-bg-panel: #242c4c;
+
+  /* Акценты */
+  --rr-pink: #ff006b;
+  --rr-red: #fa003a;
+  --rr-magenta: #fb0048;
+  --rr-hotpink: #ff0970;
+  --rr-purple: #591ba1;
+  --rr-purple-deep: #8e00fb;
+  --rr-violet: #de1cff;
+  --rr-lilac: #c774fa;
+
+  /* Текст */
+  --rr-fg: #ffffff;
+  --rr-fg-dim: #b0b0cf;
+  --rr-fg-muted: #60607e;
+
+  /* Границы */
+  --rr-border-muted: #ffffff14;
+  --rr-border-strong: #ffffff2e;
+
+  /* Градиенты */
+  --rr-grad: linear-gradient(135deg, #591ba1, #ff006b, #fa003a);
+  --rr-grad-btn: linear-gradient(90deg, #591ba1 0%, #fa003a 100%);
+  --rr-grad-text: linear-gradient(90deg, #ff006b, #fa003a);
+
+  /* Радиусы */
+  --rr-radius-sm: 8px;
+  --rr-radius-md: 16px;
+  --rr-radius-lg: 20px;
+  --rr-radius-pill: 100px;
+
+  /* Тени / свечения */
+  --rr-shadow-md: 0 8px 24px #00000026;
+  --rr-shadow-glow-purple: 0 0 80px #591ba173;
+
+  /* Шрифты */
+  --rr-font-display: 'Dela Gothic One', system-ui, sans-serif;
+  --rr-font-sans: 'Golos Text', system-ui, sans-serif;
+
+  /* Переходы */
+  --rr-transition: all .18s;
+}

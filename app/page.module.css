@@ -1,0 +1,110 @@
+/* ---------- HERO — фирменная панель сайта (фиолетово-малиновое свечение) ---------- */
+.hero {
+  padding: 32px 0 20px;
+}
+.heroPanel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--rr-border-muted);
+  padding: 76px 32px 80px;
+  text-align: center;
+  background:
+    radial-gradient(120% 130% at 50% -25%, rgba(89, 27, 161, 0.5) 0%, transparent 55%),
+    radial-gradient(80% 80% at 88% 118%, rgba(250, 0, 58, 0.3) 0%, transparent 55%),
+    radial-gradient(70% 70% at 12% 115%, rgba(222, 28, 255, 0.16) 0%, transparent 55%),
+    linear-gradient(180deg, #14142e 0%, #0a0a17 100%);
+}
+.heroContent {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.introBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 8px;
+  margin-bottom: 28px;
+  border-radius: var(--rr-radius-pill);
+  background: #ff006b1f;
+  border: 1px solid #ff006b4d;
+  color: var(--rr-pink);
+  font-size: 14px;
+  font-weight: 500;
+}
+.introBadge img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.h1 {
+  margin: 0 auto 22px;
+  font-weight: 800;
+  font-size: clamp(42px, 6.6vw, 68px);
+  line-height: 1.04;
+}
+.lead {
+  font-size: 19px;
+  color: var(--text-soft);
+  max-width: 600px;
+  margin: 0 auto 34px;
+}
+.heroCta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ---------- ВХОДЫ по ролям ---------- */
+.entries {
+  padding: 28px 0 24px;
+}
+.entryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ---------- КАТАЛОГ ---------- */
+.catalog {
+  padding: 44px 0 72px;
+}
+.catalogHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.catalogHead h2 {
+  margin: 10px 0 8px;
+}
+.catalogHead p {
+  margin: 0;
+  max-width: 52ch;
+}
+.adminBtn {
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .entryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .heroPanel {
+    padding: 56px 20px 60px;
+    border-radius: 22px;
+  }
+  .catalogHead {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .adminBtn {
+    align-self: flex-start;
+  }
+}

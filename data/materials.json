@@ -1,0 +1,117 @@
+{
+  "categories": [
+    {
+      "slug": "razbory-magazinov",
+      "title": "Разборы магазинов"
+    },
+    {
+      "slug": "materialy-k-video",
+      "title": "Материалы к видео"
+    },
+    {
+      "slug": "chek-listy",
+      "title": "Чек-листы"
+    },
+    {
+      "slug": "stati",
+      "title": "Статьи"
+    },
+    {
+      "slug": "start-na-ozon",
+      "title": "Старт на Ozon"
+    }
+  ],
+  "materials": [
+    {
+      "id": "m-001",
+      "slug": "razbor-magazina-tovary-dlya-doma",
+      "type": "razbor",
+      "title": "Разбор магазина: товары для дома",
+      "description": "Полный разбор карточек, юнит-экономики и продвижения магазина в нише «товары для дома». Что тормозит продажи и что чинить в первую очередь.",
+      "category": "razbory-magazinov",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "Демо-материал. Здесь будет полный разбор магазина: обзор ассортимента, анализ карточек, юнит-экономика, точки роста и пошаговый план.",
+      "isFree": true,
+      "createdAt": "2026-06-02T10:00:00.000Z"
+    },
+    {
+      "id": "m-002",
+      "slug": "kak-schitat-unit-ekonomiku",
+      "type": "checklist",
+      "title": "Чек-лист: как посчитать юнит-экономику",
+      "description": "Пошаговый чек-лист расчёта прибыли с одной единицы товара: себестоимость, комиссии Ozon, логистика, ДРР и итоговая маржа.",
+      "category": "chek-listy",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "Демо чек-лист:\n1. Себестоимость товара.\n2. Комиссия Ozon по категории.\n3. Логистика и хранение.\n4. Расходы на рекламу (ДРР).\n5. Итоговая маржа и точка безубыточности.",
+      "isFree": true,
+      "createdAt": "2026-06-05T10:00:00.000Z"
+    },
+    {
+      "id": "m-003",
+      "slug": "video-podbor-tovara",
+      "type": "video",
+      "title": "Видео: как подобрать товар для старта",
+      "description": "Разбор методики подбора товара под бюджет 100–200к: спрос, конкуренция, рентабельность и подводные камни ниш.",
+      "category": "materialy-k-video",
+      "coverUrl": "",
+      "contentUrl": "https://my.makeunion.me/simulators/ozon-quiz",
+      "body": "Демо-видео. К материалу будет прикреплён плеер и сопроводительные заметки.",
+      "isFree": true,
+      "createdAt": "2026-06-08T10:00:00.000Z"
+    },
+    {
+      "id": "m-004",
+      "slug": "oshibki-novichkov-na-ozon",
+      "type": "article",
+      "title": "7 ошибок новичков на Ozon",
+      "description": "Самые частые ошибки на старте: от неверного расчёта цены до слабых карточек. Как их избежать и не слить бюджет.",
+      "category": "stati",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "Демо-статья. Здесь будет разбор 7 типичных ошибок и рекомендации по каждой.",
+      "isFree": true,
+      "createdAt": "2026-06-11T10:00:00.000Z"
+    },
+    {
+      "id": "m-005",
+      "slug": "s-chego-nachat-na-ozon",
+      "type": "article",
+      "title": "С чего начать продавать на Ozon",
+      "description": "Дорожная карта старта: регистрация, выбор схемы работы (FBO/FBS), первая поставка и запуск продаж.",
+      "category": "start-na-ozon",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "Демо-статья о старте на Ozon: регистрация ЛК, выбор схемы, первая карточка и поставка.",
+      "isFree": true,
+      "createdAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "m-006",
+      "slug": "razbor-magazina-odezhda",
+      "type": "razbor",
+      "title": "Разбор магазина: одежда и аксессуары",
+      "description": "Как устроен успешный магазин одежды на Ozon: контент, размерные сетки, работа с отзывами и возвратами.",
+      "category": "razbory-magazinov",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "Демо-разбор магазина одежды: ассортиментная матрица, карточки, отзывы, возвраты.",
+      "isFree": false,
+      "createdAt": "2026-06-18T10:00:00.000Z"
+    },
+    {
+      "id": "m-1784155563490",
+      "slug": "avp",
+      "type": "razbor",
+      "title": "авп",
+      "description": "аыа",
+      "category": "chek-listy",
+      "coverUrl": "",
+      "contentUrl": "",
+      "body": "ыаыа",
+      "isFree": true,
+      "createdAt": "2026-07-15T22:46:03.490Z"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+.top {
+  padding: 28px 0 8px;
+}
+.back {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.15s ease;
+}
+.back:hover {
+  color: #fff;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 16px;
+}
+.category {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+
+.title {
+  margin: 0 0 14px;
+}
+.desc {
+  font-size: 19px;
+  color: var(--text-soft);
+  max-width: 64ch;
+  margin: 0 0 28px;
+}
+
+.cover {
+  aspect-ratio: 16 / 8;
+  border-radius: var(--radius);
+  background-color: var(--surface-2);
+  background-image: var(--grad-soft);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.coverMark {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 96px;
+  color: rgba(255, 255, 255, 0.16);
+}
+
+.body {
+  font-size: 17px;
+  line-height: 1.7;
+}
+.body p {
+  margin: 0 0 14px;
+  color: var(--text-soft);
+}
+
+.actions {
+  margin: 32px 0 60px;
+}

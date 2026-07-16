@@ -1,0 +1,356 @@
+/* ===========================================================================
+   ДИЗАЙН-СИСТЕМА ПОРТАЛА — источник правды: боевой сайт romarayt.ru/ozon
+   Токены сняты 1-в-1 с настоящего CSS сайта (Tilda ZeroBlock), мусор библиотек
+   и декоративных блоков отброшен. Совпадает с системой Ozon-квиза:
+   тёмный фон #030510/#0a0a13, Golos Text, градиент #591BA1→#FA003A,
+   розовый #ff006b. Подробности и что отброшено — content/DESIGN-SYSTEM.md.
+   Шрифт Golos Text подключён через next/font в layout.tsx (--font-golos).
+   Квиз (components/quiz/*) самоизолирован под .ozon-quiz-root.
+   =========================================================================== */
+
+:root {
+  /* --- Фоны (тёмный) --- */
+  --rr-bg: #030510;          /* база (доминанта bg на сайте) */
+  --rr-bg-deep: #0a0a13;     /* --grad-left сайта */
+  --rr-bg-card: #141629;
+  --rr-bg-card-2: #1d1d34;   /* --grad-right сайта */
+  --rr-bg-raised: #1d1d34;
+  --rr-bg-panel: #3d4555;    /* панели/поля */
+
+  /* --- Текст --- */
+  --rr-fg: #ffffff;
+  --rr-fg-soft: #e8f0ff;
+  --rr-fg-dim: #b0b0cf;      /* color ×16 на сайте */
+  --rr-fg-muted: #60607e;    /* color ×18 на сайте */
+
+  /* --- Границы --- */
+  --rr-border-muted: #ffffff1a;   /* rgba(255,255,255,.1) */
+  --rr-border-strong: #ffffff2e;
+
+  /* --- Акценты бренда --- */
+  --rr-pink: #ff006b;
+  --rr-hot-pink: #ff0970;
+  --rr-magenta: #fb0048;
+  --rr-purple: #591ba1;      /* --grad-left */
+  --rr-red: #fa003a;         /* --grad-right */
+  --rr-crimson: #f91155;
+  --rr-decor-magenta: #b43ab1;
+  --rr-lilac: #c774fa;
+  --rr-violet: #de1cff;
+  --rr-amber: #fed791;
+
+  /* Совместимость: ссылки на золото из прошлого этапа → розово-фиолетовый акцент
+     (чтобы не править компоненты в этом шаге) */
+  --rr-gold: var(--rr-pink);
+  --rr-gold-bright: var(--rr-hot-pink);
+  --rr-gold-deep: var(--rr-purple);
+
+  /* --- Градиенты --- */
+  --rr-grad-primary: linear-gradient(180deg, #591ba1 0%, #fa003a 100%);
+  --rr-grad-primary-h: linear-gradient(90deg, #591ba1 0%, #fa003a 100%); /* --progress-gradient сайта (кнопки) */
+  --rr-grad-text: linear-gradient(90deg, #ff006b 0%, #fa003a 100%);       /* яркая подсветка слов (текст) */
+  --rr-grad-pink: linear-gradient(180deg, #fb0045 0%, #ff0970 100%);
+  --rr-grad-magenta: linear-gradient(45deg, #b43ab1 20%, #fa003a 100%);
+  --rr-grad-soft: linear-gradient(135deg, rgba(89, 27, 161, 0.28), rgba(255, 0, 107, 0.16));
+
+  /* --- Радиусы (доминанты сайта: 8/16/20; 30 крупный; 100 пилюля) --- */
+  --rr-radius-sm: 8px;
+  --rr-radius-md: 16px;
+  --rr-radius-lg: 20px;
+  --rr-radius-xl: 30px;
+  --rr-radius-pill: 100px;
+
+  /* --- Тени / свечения --- */
+  --rr-shadow-sm: 0 2px 8px #00000026;
+  --rr-shadow-md: 0 8px 24px #00000026;
+  --rr-shadow-lg: 0 20px 60px #00000040;
+  --rr-shadow-glow-purple: 0 0 80px #591ba173;
+  --rr-shadow-glow-pink: 0 0 80px #fa003a59;
+
+  /* Фон страницы: фиол. свечение сверху + малиновое снизу + тёмная база */
+  --rr-page-bg:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #591ba159 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, #fa003a33 0%, transparent 55%),
+    var(--rr-bg);
+
+  /* --- Семантические алиасы (используются в компонентах) --- */
+  --bg: var(--rr-bg);
+  --bg-2: var(--rr-bg-deep);
+  --surface: var(--rr-bg-card);
+  --surface-2: var(--rr-bg-raised);
+  --surface-3: var(--rr-bg-panel);
+  --surface-hover: var(--rr-bg-card-2);
+
+  --border: var(--rr-border-muted);
+  --border-strong: var(--rr-border-strong);
+
+  --text: var(--rr-fg);
+  --text-soft: var(--rr-fg-dim);
+  --text-muted: var(--rr-fg-muted);
+
+  --pink: var(--rr-pink);
+  --purple: var(--rr-purple);
+  --red: var(--rr-red);
+  --grad: var(--rr-grad-primary-h);
+  --grad-soft: var(--rr-grad-soft);
+
+  --success: #5fa979;
+  --warning: var(--rr-amber);
+
+  --radius: var(--rr-radius-lg);
+  --radius-sm: var(--rr-radius-md);
+  --radius-pill: var(--rr-radius-pill);
+
+  --glow: var(--rr-shadow-glow-purple);
+  --shadow: var(--rr-shadow-md);
+  --shadow-lg: var(--rr-shadow-lg);
+
+  /* Шрифты: Golos Text (и заголовки, и текст). Переменная из next/font (layout.tsx).
+     Алиасы --font-display/--font-mono сохранены — компоненты подхватят Golos. */
+  --font-golos-stack: var(--font-golos), "Onest", system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-golos-stack);
+  --font-head: var(--font-golos-stack);
+  --font-display: var(--font-golos-stack);
+  --font-mono: var(--font-golos-stack);
+
+  --container: 1200px;
+  --container-narrow: 880px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--rr-fg);
+  background: var(--rr-page-bg);
+  background-attachment: fixed;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0 0 0.5em;
+  color: #fff;
+}
+
+h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.05; }
+h2 { font-size: clamp(28px, 4vw, 40px); }
+h3 { font-size: clamp(20px, 2.4vw, 28px); }
+h4 { font-size: 20px; }
+
+/* Акцентное слово в заголовке — яркая розово-малиновая подсветка (как на сайте) */
+em {
+  font-style: normal;
+  background: var(--rr-grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+p { margin: 0 0 1em; color: var(--rr-fg-dim); }
+p:last-child { margin-bottom: 0; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { margin: 0; padding-left: 20px; }
+li { color: var(--rr-fg-dim); }
+li + li { margin-top: 8px; }
+
+/* ---------- Изоляция квиза ----------
+   Квиз (.ozon-quiz-root) — точная копия эталона со своими --rr-* токенами.
+   Барьер против протечки глобальных правил портала внутрь квиза. */
+.ozon-quiz-root :is(h1, h2, h3, h4) {
+  font-family: var(--rr-font-display);
+  text-transform: none;
+  letter-spacing: var(--rr-tracking-tight);
+  color: inherit;
+}
+.ozon-quiz-root em {
+  color: inherit;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* ---------- Раскладка ---------- */
+.layout-content {
+  margin-left: 264px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.layout-content > main {
+  flex: 1;
+}
+@media (max-width: 960px) {
+  .layout-content {
+    margin-left: 0;
+    padding-top: 58px;
+  }
+}
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+.container-narrow,
+.rr-shell {
+  width: min(var(--container-narrow), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+section { padding: 72px 0; }
+
+/* ---------- Типографические утилиты ---------- */
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--rr-grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.muted { color: var(--rr-fg-muted); }
+.soft { color: var(--rr-fg-dim); }
+.center { text-align: center; }
+
+.gradient-text {
+  background: var(--rr-grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: var(--rr-radius-lg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.18s ease;
+  text-decoration: none;
+  min-height: 52px;
+}
+/* Основная — заливка фирменным градиентом, белый текст */
+.btn-primary {
+  background: var(--rr-grad-primary-h);
+  color: #fff;
+  box-shadow: var(--rr-shadow-glow-purple);
+}
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+/* Вторичная — прозрачная с обводкой */
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid var(--rr-border-strong);
+}
+.btn-secondary:hover {
+  border-color: var(--rr-pink);
+  transform: translateY(-1px);
+}
+
+/* ---------- Плашки / бейджи ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--rr-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #ff006b1f;
+  border: 1px solid #ff006b4d;
+  color: var(--rr-pink);
+}
+.badge-outline {
+  background: transparent;
+  border: 1px solid var(--rr-border-strong);
+  color: var(--rr-fg-dim);
+}
+
+/* ---------- Карточки ---------- */
+.card {
+  background: var(--rr-bg-card);
+  border: 1px solid var(--rr-border-muted);
+  border-radius: var(--rr-radius-lg);
+  padding: 24px;
+  transition: all 0.18s ease;
+}
+
+/* ---------- Формы ---------- */
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--rr-fg-dim);
+  margin-bottom: 6px;
+}
+input, textarea, select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--rr-radius-sm);
+  background: var(--rr-bg-deep);
+  border: 1px solid var(--rr-border-muted);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+input::placeholder, textarea::placeholder { color: var(--rr-fg-muted); }
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--rr-pink);
+  box-shadow: 0 0 0 3px rgba(255, 0, 107, 0.18);
+}
+textarea { resize: vertical; min-height: 96px; }
+
+/* ---------- Анимация появления ---------- */
+@keyframes ozQuizFadeSlide {
+  0% { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rr-anim { animation: 0.35s both ozQuizFadeSlide; }
+.rr-anim-slow { animation: 0.5s both ozQuizFadeSlide; }
+
+/* ---------- Прочее ---------- */
+.hidden { display: none; }
+
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  section { padding: 52px 0; }
+  .container, .container-narrow, .rr-shell { width: calc(100% - 28px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-anim, .rr-anim-slow { animation: none; }
+  * { transition: none !important; }
+}
