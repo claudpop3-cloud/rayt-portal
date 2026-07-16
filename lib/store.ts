@@ -16,13 +16,17 @@ import { Redis } from "@upstash/redis";
  * поэтому имена файлов совпадают со старой схемой — локальные данные не теряются.
  */
 
+// Имена переменных зависят от способа подключения:
+//  - вручную (@upstash/redis) → UPSTASH_REDIS_REST_URL / _TOKEN
+//  - интеграция Upstash в Vercel Marketplace → KV_REST_API_URL / KV_REST_API_TOKEN
+// Принимаем оба, чтобы не зависеть от того, как заведена база.
+const redisUrl =
+  process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const redisToken =
+  process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+
 const redis =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-      })
-    : null;
+  redisUrl && redisToken ? new Redis({ url: redisUrl, token: redisToken }) : null;
 
 /** true — работаем на Redis (прод), false — на файлах (локально). */
 export const usingRedis = Boolean(redis);
