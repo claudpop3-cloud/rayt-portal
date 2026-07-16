@@ -8,7 +8,6 @@ import {
   ClipboardCheck,
   Handshake,
   GraduationCap,
-  Settings,
   Menu,
   X,
 } from "lucide-react";
@@ -30,7 +29,6 @@ const NAV: NavItem[] = [
   { label: "ИИ-разбор", href: routes.quiz, icon: <ClipboardCheck size={19} /> },
   { label: "Сопровождение", href: routes.sopSeller, icon: <Handshake size={19} /> },
   { label: "Курсы", href: routes.courses, icon: <GraduationCap size={19} /> },
-  { label: "Админка", href: routes.admin, icon: <Settings size={19} />, plain: true },
 ];
 
 export default function SiteSidebar() {
