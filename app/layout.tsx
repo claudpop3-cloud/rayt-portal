@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
 import "./globals.css";
-import SiteSidebar from "@/components/SiteSidebar";
+import AppSidebar from "@/components/AppSidebar";
 import SiteFooter from "@/components/SiteFooter";
+import FooterGate from "@/components/FooterGate";
 
 // Источник правды — боевой сайт romarayt.ru/ozon: шрифт Golos Text (400–700),
 // и заголовки, и текст. Подключаем через next/font/google (кириллица + латиница).
@@ -27,10 +28,12 @@ export default function RootLayout({
   return (
     <html lang="ru" className={golos.variable}>
       <body>
-        <SiteSidebar />
+        <AppSidebar />
         <div className="layout-content">
           <main>{children}</main>
-          <SiteFooter />
+          <FooterGate>
+            <SiteFooter />
+          </FooterGate>
         </div>
       </body>
     </html>
