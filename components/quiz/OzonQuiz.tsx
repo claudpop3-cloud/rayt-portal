@@ -934,41 +934,22 @@ export default function OzonQuiz() {
   const [leadStatus, setLeadStatus] = useState<LeadStatus>("idle");
   const [leadError, setLeadError] = useState("");
 
-  // Восстановление из localStorage (как в оригинале + ситуация и ИИ-разбор).
+  // Восстановление из localStorage. Возобновляем ТОЛЬКО недопройденный квиз
+  // (stage "quiz"/"situation"). Если прошлый проход уже завершён (stage "result")
+  // или это intro — начинаем заново: не показываем старый результат и не тратим
+  // OpenAI на повторный ИИ-разбор при каждом заходе на страницу.
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const s = JSON.parse(raw);
-      const st =
-        s.stage && ["intro", "quiz", "situation", "result"].includes(s.stage) ? s.stage : "intro";
+      const st = s.stage === "quiz" || s.stage === "situation" ? s.stage : null;
+      if (!st) return;
       setStage(st);
       setQIndex(s.qIndex || 0);
       setAnswers(s.answers || {});
       setSituation(s.situation || "");
-      setResultId(s.resultId || null);
-      if (st === "result" && s.resultId) {
-        recordRef.current = s.recordId || newRecordId();
-      } else if (s.recordId) {
-        recordRef.current = s.recordId;
-      }
-      if (s.ai) {
-        setAi(s.ai);
-        setAiStatus("done");
-        // Перезагрузка результата: на случай, если исходная запись не сохранилась.
-        if (st === "result" && s.resultId) {
-          persistRecord({
-            result: RESULTS[s.resultId]?.badge ?? null,
-            resultId: s.resultId,
-            answers: readableAnswers(s.answers || {}),
-            situation: s.situation || "",
-            ai: s.ai,
-          });
-        }
-      } else if (st === "result" && s.resultId) {
-        // Перезагрузка на экране результата без сохранённого разбора — запросить заново.
-        runAi(s.resultId, s.answers || {}, s.situation || "");
-      }
+      if (s.recordId) recordRef.current = s.recordId;
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
